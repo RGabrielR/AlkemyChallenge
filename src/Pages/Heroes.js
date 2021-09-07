@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import {addHero, deleteHero} from '../redux/actions/heroesActions';
 import NavBar from './components/navbar'
 import { createProxyMiddleware } from 'http-proxy-middleware';
-
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 class Heroes extends Component {
 
   constructor(props) {
@@ -28,7 +28,7 @@ class Heroes extends Component {
   handleSubmit(event) {
     axios({
       method: "get",
-      url: `/api/${process.env.REACT_APP_TOKEN}/search/${this.state.value}`,
+      url: `https://superheroapi.com/api/${process.env.REACT_APP_TOKEN}/search/${this.state.value}`,
       headers: {},
     })
       .then((response) => {

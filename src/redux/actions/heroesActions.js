@@ -1,6 +1,6 @@
 import * as t from '../types';
 import axios from 'axios';
-
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 export const addHero = id => {
     return (dispatch) => {
         axios({
