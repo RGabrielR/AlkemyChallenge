@@ -39,6 +39,7 @@ class Heroes extends Component {
             );
       })
       .catch((error) => {
+        console.log(error)
         this.setState({
             isLoaded:true,
             error});
