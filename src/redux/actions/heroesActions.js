@@ -5,8 +5,8 @@ export const addHero = id => {
     return (dispatch) => {
         axios({
       method: "get",
-      url: `https://superheroapi.com/api/${process.env.REACT_APP_TOKEN}/${id}`,
-      headers: {"Access-Control-Allow-Origin": "*"},
+      url: `/api/${process.env.REACT_APP_TOKEN}/${id}`,
+      headers: {},
     })
       .then((response) => {
           if(!response) return "cargando..."

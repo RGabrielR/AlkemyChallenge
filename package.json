@@ -1,6 +1,7 @@
 {
   "name": "alkemychallenge",
   "version": "0.1.0",
+  "proxy": "https://superheroapi.com",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.1",
@@ -48,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "http-proxy-middleware": "^2.0.1",
     "redux-devtools-extension": "^2.13.9"
   }
 }

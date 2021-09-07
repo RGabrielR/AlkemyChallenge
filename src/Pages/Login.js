@@ -27,7 +27,7 @@ const [mensaje, guardarMensaje] = useState(null);
              guardarMensaje('Correcto, Redirigiendo...');
           setTimeout(() => {
               history.push("/")
-          }, 1500);
+          }, 2000);
           }
       else {
            guardarMensaje('Error, Credenciales erroneas');

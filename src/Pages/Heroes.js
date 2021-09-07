@@ -5,7 +5,8 @@ import { connect } from "react-redux";
 import Swal from 'sweetalert2';
 import {addHero, deleteHero} from '../redux/actions/heroesActions';
 import NavBar from './components/navbar'
-axios.defaults.headers.post['Content-Type'] ='application/x-www-form-urlencoded';
+import { createProxyMiddleware } from 'http-proxy-middleware';
+
 class Heroes extends Component {
 
   constructor(props) {
@@ -27,16 +28,8 @@ class Heroes extends Component {
   handleSubmit(event) {
     axios({
       method: "get",
-      headers: {
-'Access-Control-Allow-Origin': '*',
-'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-},
-proxy: {
-host: '104.236.174.88',
-port: 3128
-},
-      url: `https://superheroapi.com/api/${process.env.REACT_APP_TOKEN}/search/${this.state.value}`,
-       crossdomain: true 
+      url: `/api/${process.env.REACT_APP_TOKEN}/search/${this.state.value}`,
+      headers: {},
     })
       .then((response) => {
           if(!response) return "cargando..."
