@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
+import Heroes from "./Pages/Heroes";
+import Login from "./Pages/Login";
+import Main from "./Pages/Main";
 
-function App() {
+const App = () =>  {
+  const token = localStorage.hasOwnProperty('token')
+  console.log(token );
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
+    <Router>
+      <Switch>
+        <Route exact path="/">
+         {token ? <Main /> : <Redirect to="/login" /> } 
+        </Route>
+        <Route path="/heroes">
+         {token ? <Heroes /> : <Redirect to="/login" /> } 
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+      </Switch>
+    </Router>
   );
+  
 }
 
 export default App;

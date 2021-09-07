@@ -1,38 +1,43 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Hina+Mincho&display=swap');
+
+*{
+  font-family: 'Hina Mincho', serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+  background-image: url('./New_York_City_at_night_HDR.jpg');
+  overflow-x: hidden;
+  
+}
+.navBar{
+  width: full;
+}
+.logoSize{
+  max-width: 20rem;
+}
+.pointer{
+  cursor: pointer;
+}
+.card {
+  margin: 0 auto; 
+  float: none; 
+  margin-bottom: 10px;
+  box-shadow: 3px 10px 26px 0px rgba(0,0,0,0.75);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.shortSize{
+  width:18rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.cardSize{
+  width: 35%;
+}
+.imageSize{
+  width: 40%;
+  justify-self: end;  
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+@media (max-width: 900px) {
+  .cardSize{
+    width: 80%;  }
+} 
