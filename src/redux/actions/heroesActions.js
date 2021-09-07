@@ -6,7 +6,7 @@ export const addHero = id => {
         axios({
       method: "get",
       url: `https://superheroapi.com/api/${process.env.REACT_APP_TOKEN}/${id}`,
-      headers: {},
+      headers: {"Access-Control-Allow-Origin": "*"},
     })
       .then((response) => {
           if(!response) return "cargando..."
