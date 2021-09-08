@@ -6,7 +6,6 @@ const Login = () => {
 const history = useHistory();
 
 const [mensaje, guardarMensaje] = useState(null);
-// Mutation para crear nuevos usuarios en apollo
   const token = "eyJlbWFpbCI6ImNoYWxsZW5nZUBhbGtlbXkub3JnIiwicGFzc3dvcmQiOiJyZWFjdCIsImFsZyI6IkhTMjU2In0.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.YU3uKClJYpTIH439L7Iiqm0SwU8Ym_89_8ADxCgUd68";
   const formik = useFormik({
     initialValues: {
@@ -23,12 +22,14 @@ const [mensaje, guardarMensaje] = useState(null);
     onSubmit :  valores => {
         
       if(valores.email ==="challenge@alkemy.org" && valores.password ==="react") {
-            localStorage.setItem('token', token)
-             guardarMensaje('Correcto, Redirigiendo...');
+             
+          localStorage.setItem('token', token);
           setTimeout(() => {
-              history.push("/")
-          }, 2000);
-          }
+          guardarMensaje('Correcto, Redirigiendo...');
+         }, 1500);
+           history.push("/");
+            window.location.reload();
+           }
       else {
            guardarMensaje('Error, Credenciales erroneas');
           setTimeout(() => {

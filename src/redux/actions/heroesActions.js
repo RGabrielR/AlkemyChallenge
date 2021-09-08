@@ -1,22 +1,12 @@
 import * as t from '../types';
 import axios from 'axios';
-axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+
 export const addHero = id => {
     return (dispatch) => {
-        axios({
-      method: "get",
-      url: `/api/${process.env.REACT_APP_TOKEN}/${id}`,
-      headers: {},
-    })
-      .then((response) => {
-          if(!response) return "cargando..."
-        dispatch(newHero(response))
-      })
-      // .catch((error) => {
-      //   dispatch(error(error))
-      // });
-    }
-}
+    const config = {method: 'get', url: `https://evening-depths-13521.herokuapp.com/${id}`, headers: { }};
+    axios(config).then( (response) => {dispatch(newHero(response))})
+              .catch((error) => dispatch(handleError(error)))
+}}
 
 export const deleteHero = (id, members) =>{
   return (dispatch) => {
@@ -37,9 +27,9 @@ export const newHero = hero =>{
     }
 }
 
-export const error = error =>{
+export const handleError = error =>{
   return{
-    type:t.ERROR,
+    type:t.HANDLE_ERROR,
     payload: error
   }
 }

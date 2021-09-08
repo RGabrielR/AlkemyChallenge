@@ -13,7 +13,7 @@ const teamMembersReducer = (state = initialState ,  action) => {
           members: [...state.members, action.payload],
           loading: true
         }
-        case t.ERROR:
+        case t.HANDLE_ERROR:
         return {
           loading: true,
           error: action.payload
