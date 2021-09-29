@@ -5,7 +5,6 @@ import {
   Image,
   Card,
 } from "react-bootstrap";
-
 import { connect } from "react-redux";
 import { addHero, deleteHero } from "../../redux/actions/heroesActions";
 import Swal from "sweetalert2";
@@ -27,9 +26,7 @@ const ShowHeroes = (props) => {
   } = hero.appearance;
   const { "alter-egos": alterEgos } = hero.biography;
   const { base } = hero.work;
-
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -78,6 +75,7 @@ const ShowHeroes = (props) => {
     }
     Swal.fire("Congratulations!", "You deleted a member", "success");
   };
+  
   return (
     <div class="card shortSize d-block mx-auto bg-dark">
       <Image className="card-img-top" src={image.url} alt='no hero found' />

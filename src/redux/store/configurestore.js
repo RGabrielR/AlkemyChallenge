@@ -7,12 +7,9 @@ import rootReducer from '../reducers/rootreducer'
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
-
-
 export default function configureStore(preloadedState) {
   const middlewares = [logger, thunkMiddleware]
   const middlewareEnhancer = applyMiddleware(...middlewares)
-
   const enhancers = [middlewareEnhancer, monitorReducersEnhancer]
   const composedEnhancers = composeWithDevTools(...enhancers)
   const persistConfig = {key: 'root', storage, }
@@ -22,6 +19,5 @@ export default function configureStore(preloadedState) {
   if (process.env.NODE_ENV !== 'production' && module.hot) {
     module.hot.accept('../reducers/rootreducer', () => store.replaceReducer(rootReducer))
   }
-
   return store
 }

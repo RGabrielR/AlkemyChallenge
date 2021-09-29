@@ -1,5 +1,4 @@
 import React from 'react';
-
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
@@ -9,10 +8,7 @@ import Main from "./Pages/Main";
 
 const App = () =>  {
    const token = localStorage.hasOwnProperty('token');
-  
-  
   return (
-    
     <Router>
     {token ? (<Switch>
         <Route exact path="/">
@@ -34,10 +30,8 @@ const App = () =>  {
         </Route>
         </>
       ) }
-      
     </Router>
   );
-  
 }
 
 export default App;

@@ -24,11 +24,9 @@ body{
   margin-bottom: 10px;
   box-shadow: 3px 10px 26px 0px rgba(0,0,0,0.75);
 }
-
 .shortSize{
   width:18rem;
 }
-
 .cardSize{
   width: 35%;
 }
@@ -36,7 +34,6 @@ body{
   width: 40%;
   justify-self: end;  
 }
-
 .responsive-width{
   width: 50%;
 }
@@ -48,7 +45,6 @@ body{
   .cardSize{
     width: 80%;  }
 } 
-
 @media(max-width: 768px) {
   .responsive-width{
     width: 100%;
