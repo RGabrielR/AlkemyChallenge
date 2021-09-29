@@ -1,10 +1,12 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-
-const NavBar = () => {
+import {connect} from 'react-redux';
+import {loggedOut} from '../../redux/actions/loggedActions';
+const NavBar = (props) => {
   const history = useHistory();
   const LogOut = () => {
     localStorage.removeItem("token");
+    props.loggedOut();
     history.push("/login");
   };
 
@@ -49,5 +51,9 @@ const NavBar = () => {
     </div>
   );
 };
-
-export default NavBar;
+const mapDispatchToProps= (dispatch) => {
+  return{
+    loggedOut: () => dispatch(loggedOut())
+  }
+}
+export default connect('', mapDispatchToProps)(NavBar);

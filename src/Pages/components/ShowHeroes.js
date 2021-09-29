@@ -15,6 +15,7 @@ import {
   deleteBad,
 } from "../../redux/actions/alignmentCounter";
 const ShowHeroes = (props) => {
+  console.log(props)
   const { hero, goodHeroesCounter, badHeroesCounter } = props;
   const { alignment } = hero.biography;
   const { name, image } = props.hero;

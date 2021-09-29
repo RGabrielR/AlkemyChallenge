@@ -3,8 +3,11 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { withRouter, useHistory } from "react-router-dom";
 import jwt from "jsonwebtoken";
+import {connect} from 'react-redux';
+import {loggedIn} from '../redux/actions/loggedActions';
 
-const Login = () => {
+const Login = (props) => {
+ console.log(props)
   const history = useHistory();
   const [mensaje, guardarMensaje] = useState(null);
 
@@ -28,8 +31,10 @@ const Login = () => {
           (err, token) => {
             localStorage.setItem("token", token);
           }  );
+          
           guardarMensaje("Nice! Redirecting...");
    setTimeout(() => {
+     props.loggedIn();
           history.push("/");  
         }, 1500);
         
@@ -124,5 +129,10 @@ const Login = () => {
     </>
   );
 };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loggedIn: () => dispatch(loggedIn())
+  }
+}
 
-export default withRouter(Login);
+export default connect('', mapDispatchToProps)(withRouter(Login));

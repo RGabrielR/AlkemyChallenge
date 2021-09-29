@@ -8,3 +8,6 @@ export const DELETE_GOOD = 'DELETE_GOOD';
 //BAD HEROES TYPES
 export const ADD_BAD = 'ADD_BAD';
 export const DELETE_BAD = 'DELETE_BAD';
+//LOGED IN TYPES
+export const LOGGED_IN = 'LOGGED_IN';
+export const LOGGED_OUT = 'LOGGED_OUT';
