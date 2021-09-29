@@ -75,9 +75,9 @@ const ShowHeroes = (props) => {
     }
     Swal.fire("Congratulations!", "You deleted a member", "success");
   };
-  
+
   return (
-    <div class="card shortSize d-block mx-auto bg-dark">
+    <div className="card shortSize d-block mx-auto bg-dark">
       <Image className="card-img-top" src={image.url} alt='no hero found' />
       <div className="card-body">
         <h5 className="card-title text-white">{name}</h5>

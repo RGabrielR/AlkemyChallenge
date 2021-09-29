@@ -10,13 +10,13 @@ const NavBar = () => {
 
   return (
     <div className="navBar">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div className="container-fluid">
+          <a className="navbar-brand" href="/">
             <img className="logoSize" src="./logo page.png" alt="img" />
           </a>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarNav"
@@ -24,21 +24,21 @@ const NavBar = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item px-10">
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav">
+              <li className="nav-item px-10">
                 <a
-                  class="nav-link active text-white h2 "
+                  className="nav-link active text-white h2 "
                   aria-current="page"
                   href="/heroes"
                 >
                   heroes
                 </a>
               </li>
-              <li class="nav-item  rounded mr-10 pointer">
-                <a class="nav-link text-white h2 " onClick={() => LogOut()}>
+              <li className="nav-item  rounded mr-10 pointer">
+                <a className="nav-link text-white h2 " onClick={() => LogOut()}>
                   log out
                 </a>
               </li>

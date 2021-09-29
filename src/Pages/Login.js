@@ -22,16 +22,17 @@ const Login = () => {
     onSubmit: (valores) => {
       if (  valores.email === "challenge@alkemy.org" &&
         valores.password === "react") {
-          guardarMensaje("Nice! Redirecting...");
-   setTimeout(() => {
-          history.push("/");  
-        }, 1500);
-        const token = jwt.sign(
+          const token = jwt.sign(
           { email: "challenge@alkemy.org", password: "react" },
           "login",
           (err, token) => {
             localStorage.setItem("token", token);
           }  );
+          guardarMensaje("Nice! Redirecting...");
+   setTimeout(() => {
+          history.push("/");  
+        }, 1500);
+        
       } else {
       guardarMensaje("Please provide valid email and password");
         setTimeout(() => {

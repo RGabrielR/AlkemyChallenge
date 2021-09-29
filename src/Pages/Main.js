@@ -4,6 +4,7 @@ import NavBar from "./components/navbar";
 import ShowHeroes from "./components/ShowHeroes";
 
 const Main = (props) => {
+  
   const { members } = props.teamMembers;
 
   const allHeights = members
@@ -34,7 +35,7 @@ const Main = (props) => {
       const totalPower = Object.values(powerstats)
         .map((elem) => parseInt(elem, 10))
         .reduce((a, b) => a + b);
-        
+
       return {
         name,
         image,

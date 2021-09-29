@@ -18,7 +18,7 @@ const App = () =>  {
           <Heroes />  
         </Route>
         <Route path="/login">
-          <Redirect to="/" />
+           <Login />
         </Route>
       </Switch>) : (
         <>
