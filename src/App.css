@@ -37,7 +37,23 @@ body{
   justify-self: end;  
 }
 
+.responsive-width{
+  width: 50%;
+}
+.responsive-flex{
+  flex-direction: row
+}
+
 @media (max-width: 900px) {
   .cardSize{
     width: 80%;  }
 } 
+
+@media(max-width: 768px) {
+  .responsive-width{
+    width: 100%;
+  }
+  .responsive-flex{
+    flex-direction: column
+  }
+}

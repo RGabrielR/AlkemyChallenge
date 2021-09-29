@@ -1,159 +1,87 @@
-import React, { Component, createRef } from "react";
+import React, { useState } from "react";
 import { Col, Row, Button, Form, Container } from "react-bootstrap";
 import axios from "axios";
-import { connect } from "react-redux";
-import Swal from "sweetalert2";
-import { addHero, deleteHero } from "../redux/actions/heroesActions";
 import NavBar from "./components/navbar";
-import { createProxyMiddleware } from "http-proxy-middleware";
-axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
-class Heroes extends Component {
-  constructor(props) {
-    super(props);
-    this.heroesRef = createRef();
-    this.state = {
-      value: "",
-      heroes: "",
-      isLoaded: false,
-      error: "",
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+import ShowHeroes from "./components/ShowHeroes";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-  }
-
-  handleSubmit(event) {
-    const config = {method: 'get', url: `https://evening-depths-13521.herokuapp.com/search/${this.state.value}`, headers: { }};
-  axios(config).
-  then( (response) => {
-    this.setState({
-          isLoaded: true,
-          heroes: response.data.results}
-          );
-    })
-  .catch( (error) => {
-    this.setState({
-          isLoaded:true,
-          error});
-    });
-
-    event.preventDefault();
-  }
-
-
-
-  addHero(id) {
-    if (this.props.teamMembers.members.length >= 6) {
-      Swal.fire({
-        icon: "error",
-        title: "Too much heroes",
-        text: "you already had 6 members on your team!",
+const Heroes = () => {
+  const [heroes, setHeroes] = useState([]);
+  const formik = useFormik({
+    initialValues: {
+      search: "",
+    },
+    validationSchema: Yup.object({
+      search: Yup.string().required(
+        "please, insert the name you´re looking for"
+      ),
+    }),
+    onSubmit: (value) => {
+      const config = {
+        method: "get",
+        url: `${process.env.REACT_APP_SITE}/search/${value.search}`,
+        headers: {},
+      };
+      axios(config).then((response) => {
+        setHeroes(response.data.results);
       });
-    } else {
-      this.props.addHero(id);
-      Swal.fire("Congratulations!", "You added a new member", "success");
-    }
-  }
+    },
+  });
 
-  deleteHero(id, members) {
-    this.props.deleteHero(id, members);
-    Swal.fire("Congratulations!", "You deleted a member", "success");
-  }
-
-  render() {
-    const { heroes } = this.state;
-
-    console.log(this.props.teamMembers.members.data);
-    return (
-      <div className="">
-        <NavBar />
-        <div className="container">
-          <h1 className="text-white py-3 pl-4">
-            {" "}
-            Choose your favourite heroes to join your team{" "}
-          </h1>
-          <Form className="pl-4" onSubmit={this.handleSubmit}>
-            <Row>
-              <Col>
-                <Form.Control
-                  size="lg"
-                  type="text"
-                  value={this.state.value}
-                  onChange={this.handleChange}
-                  placeholder="Search for your Hero"
-                />
-              </Col>
-              <Col>
-                <Button variant="secondary" size="lg" type="submit">
-                  Search
-                </Button>
-              </Col>
-            </Row>
-          </Form>
-        </div>
-
-        <Container className="container-fluid">
+  return (
+    <div className="">
+      <NavBar />
+      <div className="container">
+        <h1 className="text-white py-3 pl-4">
+          {" "}
+          Choose your favourite heroes to join your team{" "}
+        </h1>
+        <Form className="pl-4" onSubmit={formik.handleSubmit}>
           <Row>
-            {heroes
-              ? heroes.map((hero) => {
-                  const { name, image } = hero;
-                  return (
-                    <div class="card shortSize d-block mx-auto bg-dark">
-                      <img
-                        className="card-img-top"
-                        src={image.url}
-                        alt="Card image cap"
-                      />
-                      <div className="card-body">
-                        <h5 className="card-title text-white">{name}</h5>
-                        {!this.props.teamMembers.members.find(
-                          (i) => i.data.id === hero.id
-                        ) ? (
-                          <Button
-                            onClick={() => this.addHero(hero.id)}
-                            variant="primary"
-                          >
-                            ADD
-                          </Button>
-                        ) : (
-                          <Button
-                            onClick={() =>
-                              this.deleteHero(
-                                hero.id,
-                                this.props.teamMembers.members
-                              )
-                            }
-                            variant="danger"
-                          >
-                            DELETE
-                          </Button>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })
-              : ""}
+            <Col>
+              <Form.Control
+                size="lg"
+                type="text"
+                name="search"
+                id="search"
+                value={formik.values.search}
+                onChange={formik.handleChange}
+                placeholder="Search for your Hero"
+              />
+            </Col>
+            <Col>
+              <Button variant="secondary" size="lg" type="submit">
+                Search
+              </Button>
+            </Col>
           </Row>
-        </Container>
+        </Form>
       </div>
-    );
-  }
-}
 
-const mapStateToProps = (state) => ({
-  teamMembers: state.teamMembers,
-});
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addHero: (id) => {
-      dispatch(addHero(id));
-    },
-    deleteHero: (id, members) => {
-      dispatch(deleteHero(id, members));
-    },
-  };
+      {formik.errors.search ? (
+        <div
+          className="my-4 bg-danger 
+                 border border-dark rounded text-white p-2"
+        >
+          <p className="font-bold text-center h1">{formik.errors.search}</p>
+        </div>
+      ) : (
+        ""
+      )}
+
+      <Container className="container-fluid">
+        <Row>
+          {heroes
+            ? heroes.map((hero) => {
+                console.log(hero);
+                return <ShowHeroes key={hero.id} hero={hero} />;
+              })
+            : ""}
+        </Row>
+      </Container>
+    </div>
+  );
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Heroes);
+
+export default Heroes;
