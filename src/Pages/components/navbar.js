@@ -1,14 +1,14 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
-import {connect} from 'react-redux';
-import {loggedOut} from '../../redux/actions/loggedActions';
+// import { useHistory } from "react-router-dom";
+// import {connect} from 'react-redux';
+// import {loggedOut} from '../../redux/actions/loggedActions';
 const NavBar = (props) => {
-  const history = useHistory();
-  const LogOut = () => {
-    localStorage.removeItem("token");
-    props.loggedOut();
-    history.push("/login");
-  };
+  // const history = useHistory();
+  // const LogOut = () => {
+  //   localStorage.removeItem("token");
+  //   props.loggedOut();
+  //   history.push("/login");
+  // };
 
   return (
     <div className="navBar">
@@ -39,11 +39,11 @@ const NavBar = (props) => {
                   heroes
                 </a>
               </li>
-              <li className="nav-item  rounded mr-10 pointer">
+              {/* <li className="nav-item  rounded mr-10 pointer">
                 <a className="nav-link text-white h2 " onClick={() => LogOut()}>
                   log out
                 </a>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
@@ -51,9 +51,11 @@ const NavBar = (props) => {
     </div>
   );
 };
-const mapDispatchToProps= (dispatch) => {
-  return{
-    loggedOut: () => dispatch(loggedOut())
-  }
-}
-export default connect('', mapDispatchToProps)(NavBar);
+// const mapDispatchToProps= (dispatch) => {
+//   return{
+//     loggedOut: () => dispatch(loggedOut())
+//   }
+// }
+export default NavBar
+
+// connect('', mapDispatchToProps)(NavBar);
