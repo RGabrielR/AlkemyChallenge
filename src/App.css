@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Hina+Mincho&display=swap');
+
+*{
+  font-family: 'Hina Mincho', serif;
+}
+
+body{
+  background-image: url('./New_York_City_at_night_HDR.jpg');
+  overflow-x: hidden;
+  
+}
+.navBar{
+  width: full;
+}
+.logoSize{
+  max-width: 20rem;
+}
+.pointer{
+  cursor: pointer;
+}
+.card {
+  margin: 0 auto; 
+  float: none; 
+  margin-bottom: 10px;
+  box-shadow: 3px 10px 26px 0px rgba(0,0,0,0.75);
+}
+.shortSize{
+  width:18rem;
+}
+.cardSize{
+  width: 35%;
+}
+.imageSize{
+  width: 40%;
+  justify-self: end;  
+}
+.responsive-width{
+  width: 50%;
+}
+.responsive-flex{
+  flex-direction: row
+}
+
+@media (max-width: 900px) {
+  .cardSize{
+    width: 80%;  }
+} 
+@media(max-width: 768px) {
+  .responsive-width{
+    width: 100%;
+  }
+  .responsive-flex{
+    flex-direction: column
+  }
+}
